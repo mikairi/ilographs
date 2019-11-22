@@ -45,29 +45,48 @@ resources:
   - name: fass-gateway
     color: Red
 
+- name: External Services
+  color: DarkSlateGray
+  style: dashed
+  children:
+  - name: Campus Solution
+  - name: PROSAM
+  - name: CS Gold
+    subtitle: or new vendor solution
+  - name: eServices Drupal
+
 perspectives:
 - name: Projects
-  defaultRelationLabel: HTTP API
+  defaultRelationLabel: Includes
   color: royalblue
   relations:
   - from: eservices-web-api
     to: eservices-lib,common-logging,common-web,common-security
-    label: Build Deps
-  - from: eservices-portal,eservices-admin,enrollment-deposit
-    to: eservices-web-api
   - from: eservices-portal,eservices-admin,enrollment-deposit
     to: shared
-    label: Build Deps
+  notes: Relationship in terms of repositories, projects, sub-projects
+
+- name: Services
+  defaultRelationLabel: JSON API
+  color: DeepPink
+  relations:
+  - from: eservices-portal,eservices-admin,enrollment-deposit
+    to: eservices-web-api
   - from: eservices-web-api
     to: payment-gateway,sis-gateway,tigerbucks-gateway,fass-gateway
     label: gRPC
   - from: graph
     to: sis-gateway,tigerbucks-gateway,fass-gateway
     label: gRPC
-  
-  notes: |-
-    Welcome to your ilograph.
-
-    Your ilograph comes pre-populated with resources and a sample perspective. **The editable source is in the window to the left**.
-
-    Need Help? Check out the [introduction to IDL](https://blog.ilograph.com/posts/idl-1/) and the [IDL Spec](https://blog.ilograph.com/posts/idl-spec/). Additional resources are available on the [ilograph blog](https://blog.ilograph.com/).
+  - from: sis-gateway
+    to: Campus Solution
+    label: SOAP, JDBC
+  - from: tigerbucks-gateway
+    to: CS Gold
+    label: JDBC
+  - from: fass-gateway
+    to: PROSAM
+    label: JDBC
+  - from: fass-gateway,eservices-web-api
+    to: eServices Drupal
+  notes: Relationship in terms of service dependencies
