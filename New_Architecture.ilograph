@@ -30,12 +30,14 @@ resources:
       description: Shared Library for all Angular projects
       color: Red
       
-- name: API Services
+- name: Phoebus
+  subtitle: API Services
   description: Services ("gateways") that may serve clients other than eServices
   color: DarkMagenta
   children:
   - name: graph
     color: Red
+    description: Unified GraphQL API for all services
   - name: sis-gateway
     color: Red
   - name: tigerbucks-gateway
