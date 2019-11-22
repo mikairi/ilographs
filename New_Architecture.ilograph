@@ -1,0 +1,71 @@
+resources:
+- name: eServices
+  color: navy
+  children:
+  - name: Gradle Projects
+    children: 
+    - name: eservices-web-api
+      subtitle: /portal-services-ws
+    - name: eservices-lib
+    - name: common-logging
+    - name: common-web
+    - name: common-security
+    - name: payment-gateway
+      color: Red
+    
+  - name: Angular Projects
+    children: 
+    - name: eservices-portal
+      subtitle: /eservices
+      description: eServices Main Site
+    - name: eservices-admin
+      subtitle: /eservices-admin
+      description: eServices Admin Site
+      color: Red
+    - name: enrollment-deposit
+      subtitle: /enrollment-deposit
+      description: Enrollment Deposit Site
+      color: Red
+    - name: shared
+      description: Shared Library for all Angular projects
+      color: Red
+      
+- name: API Services
+  description: Services ("gateways") that may serve clients other than eServices
+  color: DarkMagenta
+  children:
+  - name: graph
+    color: Red
+  - name: sis-gateway
+    color: Red
+  - name: tigerbucks-gateway
+    color: Red
+  - name: fass-gateway
+    color: Red
+
+perspectives:
+- name: Projects
+  defaultRelationLabel: HTTP API
+  color: royalblue
+  relations:
+  - from: eservices-web-api
+    to: eservices-lib,common-logging,common-web,common-security
+    label: Build Deps
+  - from: eservices-portal,eservices-admin,enrollment-deposit
+    to: eservices-web-api
+  - from: eservices-portal,eservices-admin,enrollment-deposit
+    to: shared
+    label: Build Deps
+  - from: eservices-web-api
+    to: payment-gateway,sis-gateway,tigerbucks-gateway,fass-gateway
+    label: gRPC
+  - from: graph
+    to: sis-gateway,tigerbucks-gateway,fass-gateway
+    label: gRPC
+  
+  notes: |-
+    Welcome to your ilograph.
+
+    Your ilograph comes pre-populated with resources and a sample perspective. **The editable source is in the window to the left**.
+
+    Need Help? Check out the [introduction to IDL](https://blog.ilograph.com/posts/idl-1/) and the [IDL Spec](https://blog.ilograph.com/posts/idl-spec/). Additional resources are available on the [ilograph blog](https://blog.ilograph.com/).
