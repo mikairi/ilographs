@@ -28,7 +28,6 @@ resources:
       color: Red
     - name: shared
       description: Shared Library for all Angular projects
-      color: Red
       
 - name: Phoebus
   subtitle: API Services
@@ -72,7 +71,7 @@ perspectives:
   relations:
   - from: eservices-portal,eservices-admin,enrollment-deposit
     to: eservices-web-api
-  - from: eservices-web-api
+  - from: eservices-lib
     to: payment-gateway,sis-gateway,tigerbucks-gateway,fass-gateway
     label: gRPC
   - from: graph
